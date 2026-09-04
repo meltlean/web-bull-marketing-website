@@ -1,0 +1,13 @@
+{
+  "seo_title": "Services | Bull Marketing",
+  "seo_description": "Marketing and pipeline systems built specifically for high-end remodelers.",
+  "eyebrow": "What We Do",
+  "title": "Marketing built around your pipeline, not vanity metrics.",
+  "sub": "Every engagement starts with the same question: where is revenue actually leaking?",
+  "items": [
+    { "title": "Pipeline Revenue Audit", "body": "A full breakdown of your lead-to-close funnel, with the exact dollar value sitting in each gap." },
+    { "title": "Lead Generation Systems", "body": "Paid and organic systems built to bring in qualified remodeling leads, not just traffic." },
+    { "title": "Follow-Up & Close Rate Coaching", "body": "Scripts, sequences, and systems to close more of the leads you're already paying for." },
+    { "title": "Done-For-You Funnel Build", "body": "Landing pages, calculators, and booking flows built and maintained for you." }
+  ]
+}

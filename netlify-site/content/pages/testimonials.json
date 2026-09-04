@@ -1,0 +1,12 @@
+{
+  "seo_title": "Testimonials | Bull Marketing",
+  "seo_description": "What remodeling business owners say about working with Bull Marketing.",
+  "eyebrow": "Testimonials",
+  "title": "Remodelers who found the leak.",
+  "sub": "A few words from business owners who ran the numbers and made the fix.",
+  "items": [
+    { "quote": "I thought my problem was lead volume. It wasn't — it was a 12-point gap in my close rate I couldn't see until I ran the numbers.", "name": "Design-Build Remodeler", "role": "Denver, CO" },
+    { "quote": "We found almost $80K a month sitting in our appointment gap alone. Fixing the follow-up process paid for the whole engagement in the first month.", "name": "Kitchen & Bath Remodeler", "role": "Austin, TX" },
+    { "quote": "The audit gave us a number to aim at instead of a vague feeling that things could be better. That alone changed how we run the sales process.", "name": "Whole-Home Remodeler", "role": "Charlotte, NC" }
+  ]
+}

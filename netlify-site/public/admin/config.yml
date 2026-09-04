@@ -1,0 +1,177 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "public/uploads"
+public_folder: "/uploads"
+
+site_url: https://www.webbullmarketing.com
+
+collections:
+  - name: "settings"
+    label: "Site Settings"
+    files:
+      - name: "general"
+        label: "General Settings"
+        file: "content/settings.json"
+        fields:
+          - { label: "Google Analytics Measurement ID", name: "ga_id", widget: "string", required: false, hint: "Looks like G-XXXXXXXXXX. Leave blank if you don't have one yet." }
+          - { label: "Chatbot Embed Code", name: "chatbot_embed", widget: "text", required: false, hint: "Paste the full embed code your chatbot provider gave you." }
+          - { label: "Contact Form Embed URL", name: "form_embed_url", widget: "string", required: false, hint: "Link to a Google Form, Typeform, or Jotform to show on the Contact page." }
+          - { label: "Booking Link", name: "booking_link", widget: "string" }
+          - { label: "Instagram URL", name: "instagram", widget: "string", required: false }
+          - label: "Other Social Links"
+            name: "socials"
+            widget: "list"
+            required: false
+            fields:
+              - { label: "Platform Name", name: "name", widget: "string" }
+              - { label: "URL", name: "url", widget: "string" }
+
+  - name: "pages"
+    label: "Pages"
+    files:
+      - name: "home"
+        label: "Home Page"
+        file: "content/pages/home.json"
+        fields:
+          - { label: "SEO Title", name: "seo_title", widget: "string" }
+          - { label: "SEO Description", name: "seo_description", widget: "text" }
+          - { label: "Top Badge Text", name: "badge", widget: "string" }
+          - { label: "Headline (part 1)", name: "hero_title_pre", widget: "string" }
+          - { label: "Headline (highlighted part)", name: "hero_title_grad", widget: "string" }
+          - { label: "Headline (part 3)", name: "hero_title_post", widget: "string" }
+          - { label: "Subheadline", name: "hero_sub", widget: "text" }
+          - { label: "Stat 1 Number", name: "stat1_num", widget: "string" }
+          - { label: "Stat 1 Label", name: "stat1_label", widget: "string" }
+          - { label: "Stat 2 Number", name: "stat2_num", widget: "string" }
+          - { label: "Stat 2 Label", name: "stat2_label", widget: "string" }
+          - { label: "Stat 3 Number", name: "stat3_num", widget: "string" }
+          - { label: "Stat 3 Label", name: "stat3_label", widget: "string" }
+          - { label: "\"Why It's Hiding\" Eyebrow", name: "trio_eyebrow", widget: "string" }
+          - { label: "\"Why It's Hiding\" Title", name: "trio_title", widget: "string" }
+          - { label: "\"Why It's Hiding\" Subtext", name: "trio_sub", widget: "text" }
+          - { label: "Card 1 Title", name: "card1_title", widget: "string" }
+          - { label: "Card 1 Body", name: "card1_body", widget: "text" }
+          - { label: "Card 2 Title", name: "card2_title", widget: "string" }
+          - { label: "Card 2 Body", name: "card2_body", widget: "text" }
+          - { label: "Card 3 Title", name: "card3_title", widget: "string" }
+          - { label: "Card 3 Body", name: "card3_body", widget: "text" }
+          - { label: "Quote", name: "quote", widget: "text" }
+          - { label: "Quote Attribution", name: "quote_attribution", widget: "string" }
+          - { label: "Next Step Title", name: "next_step_title", widget: "string" }
+          - { label: "Next Step Subtext", name: "next_step_sub", widget: "text" }
+
+      - name: "about"
+        label: "About Page"
+        file: "content/pages/about.json"
+        fields:
+          - { label: "SEO Title", name: "seo_title", widget: "string" }
+          - { label: "SEO Description", name: "seo_description", widget: "text" }
+          - { label: "Eyebrow", name: "eyebrow", widget: "string" }
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Paragraph 1", name: "body1", widget: "text" }
+          - { label: "Paragraph 2", name: "body2", widget: "text" }
+          - { label: "Stat 1 Number", name: "stat1_num", widget: "string" }
+          - { label: "Stat 1 Label", name: "stat1_label", widget: "string" }
+          - { label: "Stat 2 Number", name: "stat2_num", widget: "string" }
+          - { label: "Stat 2 Label", name: "stat2_label", widget: "string" }
+          - { label: "Stat 3 Number", name: "stat3_num", widget: "string" }
+          - { label: "Stat 3 Label", name: "stat3_label", widget: "string" }
+
+      - name: "services"
+        label: "Services Page"
+        file: "content/pages/services.json"
+        fields:
+          - { label: "SEO Title", name: "seo_title", widget: "string" }
+          - { label: "SEO Description", name: "seo_description", widget: "text" }
+          - { label: "Eyebrow", name: "eyebrow", widget: "string" }
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Subtext", name: "sub", widget: "text" }
+          - label: "Services"
+            name: "items"
+            widget: "list"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Description", name: "body", widget: "text" }
+
+      - name: "pricing"
+        label: "Pricing Page"
+        file: "content/pages/pricing.json"
+        fields:
+          - { label: "SEO Title", name: "seo_title", widget: "string" }
+          - { label: "SEO Description", name: "seo_description", widget: "text" }
+          - { label: "Eyebrow", name: "eyebrow", widget: "string" }
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Subtext", name: "sub", widget: "text" }
+          - label: "Plans"
+            name: "tiers"
+            widget: "list"
+            fields:
+              - { label: "Plan Name", name: "name", widget: "string" }
+              - { label: "Price", name: "price", widget: "string" }
+              - { label: "Period (e.g. /month, one-time)", name: "period", widget: "string" }
+              - { label: "Highlight this plan as 'Most Popular'?", name: "highlighted", widget: "boolean", default: false }
+              - { label: "Button Text", name: "cta_label", widget: "string" }
+              - label: "Features"
+                name: "features"
+                widget: "list"
+                field: { label: "Feature", name: "feature", widget: "string" }
+
+      - name: "testimonials"
+        label: "Testimonials Page"
+        file: "content/pages/testimonials.json"
+        fields:
+          - { label: "SEO Title", name: "seo_title", widget: "string" }
+          - { label: "SEO Description", name: "seo_description", widget: "text" }
+          - { label: "Eyebrow", name: "eyebrow", widget: "string" }
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Subtext", name: "sub", widget: "text" }
+          - label: "Testimonials"
+            name: "items"
+            widget: "list"
+            fields:
+              - { label: "Quote", name: "quote", widget: "text" }
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "Role / Location", name: "role", widget: "string" }
+
+      - name: "faq"
+        label: "FAQ Page"
+        file: "content/pages/faq.json"
+        fields:
+          - { label: "SEO Title", name: "seo_title", widget: "string" }
+          - { label: "SEO Description", name: "seo_description", widget: "text" }
+          - { label: "Eyebrow", name: "eyebrow", widget: "string" }
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Subtext", name: "sub", widget: "text" }
+          - label: "Questions"
+            name: "items"
+            widget: "list"
+            fields:
+              - { label: "Question", name: "q", widget: "string" }
+              - { label: "Answer", name: "a", widget: "text" }
+
+      - name: "contact"
+        label: "Contact Page"
+        file: "content/pages/contact.json"
+        fields:
+          - { label: "SEO Title", name: "seo_title", widget: "string" }
+          - { label: "SEO Description", name: "seo_description", widget: "text" }
+          - { label: "Eyebrow", name: "eyebrow", widget: "string" }
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Subtext", name: "sub", widget: "text" }
+
+  - name: "blog"
+    label: "Blog Posts"
+    folder: "content/blog"
+    create: true
+    slug: "{{slug}}"
+    extension: "json"
+    format: "json"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "URL Slug", name: "slug", widget: "string", hint: "Used in the web address, e.g. my-post-title" }
+      - { label: "Date", name: "date", widget: "date", format: "YYYY-MM-DD" }
+      - { label: "Short Excerpt (shown on the blog list)", name: "excerpt", widget: "text" }
+      - { label: "Full Post Content", name: "body", widget: "text" }
+      - { label: "Published?", name: "published", widget: "boolean", default: true }
