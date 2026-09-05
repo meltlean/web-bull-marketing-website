@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ChevronLeft } from 'lucide-react';
-import { getBlogPostBySlug, applyMeta } from '../lib/content.js';
+import { getBlogPostBySlug, applyMeta, renderMarkdown } from '../lib/content.js';
 
 export default function BlogPost() {
   const { slug } = useParams();
@@ -25,7 +25,10 @@ export default function BlogPost() {
         <Link to="/blog" className="back-link"><ChevronLeft size={15} /> Back to blog</Link>
         <div className="blog-date" style={{ marginTop: 24 }}>{post.date}</div>
         <h1 style={{ marginTop: 10 }}>{post.title}</h1>
-        <div className="blog-body-text">{post.body}</div>
+        {post.image && (
+          <img src={post.image} alt={post.title} className="blog-featured-image" />
+        )}
+        <div className="blog-content" dangerouslySetInnerHTML={{ __html: renderMarkdown(post.body) }} />
       </div>
     </section>
   );
