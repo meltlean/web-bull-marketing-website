@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Calendar } from 'lucide-react';
 import content from '../../content/pages/home.json';
-import { applyMeta } from '../lib/content.js';
+import { applyMeta, renderMarkdown } from '../lib/content.js';
 import SliderField from '../components/SliderField.jsx';
 import LeadForm from '../components/LeadForm.jsx';
 
@@ -133,6 +133,14 @@ export default function Home({ bookingLink }) {
           <LeadForm bookingLink={bookingLink} />
         </div>
       </section>
+
+      {p.extra_content && (
+        <section style={{ paddingTop: 0 }}>
+          <div className="wrap">
+            <div className="rich-content" dangerouslySetInnerHTML={{ __html: renderMarkdown(p.extra_content) }} />
+          </div>
+        </section>
+      )}
     </>
   );
 }

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Calendar } from 'lucide-react';
 import content from '../../content/pages/contact.json';
-import { applyMeta } from '../lib/content.js';
+import { applyMeta, renderMarkdown } from '../lib/content.js';
 import LeadForm from '../components/LeadForm.jsx';
 
 export default function Contact({ bookingLink, formEmbedUrl, socials }) {
@@ -41,6 +41,9 @@ export default function Contact({ bookingLink, formEmbedUrl, socials }) {
             )}
           </div>
         </div>
+        {p.extra_content && (
+          <div className="rich-content" dangerouslySetInnerHTML={{ __html: renderMarkdown(p.extra_content) }} />
+        )}
       </div>
     </section>
   );

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Check } from 'lucide-react';
 import content from '../../content/pages/pricing.json';
-import { applyMeta } from '../lib/content.js';
+import { applyMeta, renderMarkdown } from '../lib/content.js';
 
 export default function Pricing({ bookingLink }) {
   const p = content;
@@ -33,6 +33,9 @@ export default function Pricing({ bookingLink }) {
             </div>
           ))}
         </div>
+        {p.extra_content && (
+          <div className="rich-content" dangerouslySetInnerHTML={{ __html: renderMarkdown(p.extra_content) }} />
+        )}
       </div>
     </section>
   );

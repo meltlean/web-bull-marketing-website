@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { ChevronRight } from 'lucide-react';
 import content from '../../content/pages/faq.json';
-import { applyMeta } from '../lib/content.js';
+import { applyMeta, renderMarkdown } from '../lib/content.js';
 
 export default function FAQ() {
   const p = content;
@@ -27,6 +27,9 @@ export default function FAQ() {
             </div>
           ))}
         </div>
+        {p.extra_content && (
+          <div className="rich-content" dangerouslySetInnerHTML={{ __html: renderMarkdown(p.extra_content) }} />
+        )}
       </div>
     </section>
   );
