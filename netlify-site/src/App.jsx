@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Routes, Route, Link, useLocation, useNavigate } from 'react-router-dom';
 import { Menu, X, Calendar, Instagram, Facebook, Twitter, Linkedin, Youtube, Music2, Globe } from 'lucide-react';
-import { getSettings, applyGA, injectEmbedCode } from './lib/content.js';
+import { getSettings, applyGA, injectEmbedCode, applyCustomHeadCode } from './lib/content.js';
 
 import Home from './pages/Home.jsx';
 import About from './pages/About.jsx';
@@ -44,6 +44,7 @@ export default function App() {
 
   useEffect(() => { setMobileNavOpen(false); window.scrollTo({ top: 0 }); }, [location.pathname]);
   useEffect(() => { applyGA(settings.ga_id); }, [settings.ga_id]);
+  useEffect(() => { applyCustomHeadCode(settings.custom_head_code); }, [settings.custom_head_code]);
   useEffect(() => { injectEmbedCode(chatbotRef.current, settings.chatbot_embed); }, [settings.chatbot_embed]);
 
   const socials = [
@@ -58,7 +59,7 @@ export default function App() {
 
       <div className="topbar">
         <div className="wrap topbar-inner">
-          <Link to="/" className="brandmark"><img src="/logo.png" alt="Bull Marketing" /></Link>
+          <Link to="/" className="brandmark"><img src="/logo.png" alt="Web Bull Marketing" /></Link>
           <nav className="nav-links desktop-only">
             {NAV_ITEMS.map((item) => (
               <Link key={item.to} to={item.to} className={location.pathname === item.to ? 'active' : ''}>{item.label}</Link>
@@ -94,7 +95,7 @@ export default function App() {
 
       <footer>
         <div className="wrap">
-          <Link to="/" className="brandmark" style={{ justifyContent: 'center' }}><img src="/logo.png" alt="Bull Marketing" style={{ height: 24 }} /></Link>
+          <Link to="/" className="brandmark" style={{ justifyContent: 'center' }}><img src="/logo.png" alt="Web Bull Marketing" style={{ height: 24 }} /></Link>
           {socials.length > 0 && (
             <div className="social-row" style={{ justifyContent: 'center', margin: '18px 0' }}>
               {socials.map((s, i) => (<a key={i} href={s.url} target="_blank" rel="noreferrer" className="social-btn" title={s.name}><s.Icon size={16} /></a>))}
