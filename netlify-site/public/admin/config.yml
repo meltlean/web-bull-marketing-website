@@ -171,8 +171,9 @@ collections:
     format: "json"
     fields:
       - { label: "Title", name: "title", widget: "string" }
+      - { label: "Featured Image", name: "image", widget: "image", required: false, hint: "Optional. Shows at the top of the post and on the blog list card." }
       - { label: "URL Slug", name: "slug", widget: "string", hint: "Used in the web address, e.g. my-post-title" }
       - { label: "Date", name: "date", widget: "date", format: "YYYY-MM-DD" }
       - { label: "Short Excerpt (shown on the blog list)", name: "excerpt", widget: "text" }
-      - { label: "Full Post Content", name: "body", widget: "text" }
+      - { label: "Full Post Content", name: "body", widget: "markdown", hint: "Use the toolbar to add images, links, and formatting. To embed something from another tool (like a YouTube video or a booking widget), switch to the '<>' raw code view in the toolbar and paste the embed code there." }
       - { label: "Published?", name: "published", widget: "boolean", default: true }
