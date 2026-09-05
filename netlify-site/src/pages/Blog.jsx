@@ -5,7 +5,7 @@ import { getBlogPosts, applyMeta } from '../lib/content.js';
 
 export default function Blog() {
   const posts = getBlogPosts();
-  useEffect(() => { applyMeta('Blog | Bull Marketing', 'Insights on pipeline, marketing, and revenue for remodeling businesses.'); }, []);
+  useEffect(() => { applyMeta('Blog | Web Bull Marketing', 'Insights on pipeline, marketing, and revenue for remodeling businesses.'); }, []);
 
   return (
     <section style={{ paddingTop: 130 }}>
