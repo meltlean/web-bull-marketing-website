@@ -8,7 +8,7 @@ export default function BlogPost() {
   const post = getBlogPostBySlug(slug);
 
   useEffect(() => {
-    if (post) applyMeta(`${post.title} | Bull Marketing`, post.excerpt);
+    if (post) applyMeta(`${post.title} | Web Bull Marketing`, post.excerpt);
   }, [post]);
 
   if (!post) {
