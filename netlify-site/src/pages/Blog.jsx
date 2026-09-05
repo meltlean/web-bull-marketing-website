@@ -17,6 +17,11 @@ export default function Blog() {
         <div className="blog-grid">
           {posts.map((post) => (
             <div className="glass-card blog-card" key={post.slug}>
+              {post.image && (
+                <Link to={`/blog/${post.slug}`}>
+                  <img src={post.image} alt={post.title} className="blog-card-image" />
+                </Link>
+              )}
               <div className="blog-date">{post.date}</div>
               <h3><Link to={`/blog/${post.slug}`}>{post.title}</Link></h3>
               <p>{post.excerpt}</p>
