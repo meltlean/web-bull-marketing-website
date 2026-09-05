@@ -2,7 +2,7 @@ backend:
   name: git-gateway
   branch: main
 
-media_folder: "public/uploads"
+media_folder: "netlify-site/public/uploads"
 public_folder: "/uploads"
 
 site_url: https://www.webbullmarketing.com
@@ -13,9 +13,10 @@ collections:
     files:
       - name: "general"
         label: "General Settings"
-        file: "content/settings.json"
+        file: "netlify-site/content/settings.json"
         fields:
           - { label: "Google Analytics Measurement ID", name: "ga_id", widget: "string", required: false, hint: "Looks like G-XXXXXXXXXX. Leave blank if you don't have one yet." }
+          - { label: "Custom Code (Advanced)", name: "custom_head_code", widget: "text", required: false, hint: "Paste any tracking pixel, verification tag, or embed code here (Facebook Pixel, HubSpot, LinkedIn Insight Tag, etc). It will be added to every page automatically. Only paste code exactly as given to you by that tool — ask for help if unsure." }
           - { label: "Chatbot Embed Code", name: "chatbot_embed", widget: "text", required: false, hint: "Paste the full embed code your chatbot provider gave you." }
           - { label: "Contact Form Embed URL", name: "form_embed_url", widget: "string", required: false, hint: "Link to a Google Form, Typeform, or Jotform to show on the Contact page." }
           - { label: "Booking Link", name: "booking_link", widget: "string" }
@@ -33,7 +34,7 @@ collections:
     files:
       - name: "home"
         label: "Home Page"
-        file: "content/pages/home.json"
+        file: "netlify-site/content/pages/home.json"
         fields:
           - { label: "SEO Title", name: "seo_title", widget: "string" }
           - { label: "SEO Description", name: "seo_description", widget: "text" }
@@ -64,7 +65,7 @@ collections:
 
       - name: "about"
         label: "About Page"
-        file: "content/pages/about.json"
+        file: "netlify-site/content/pages/about.json"
         fields:
           - { label: "SEO Title", name: "seo_title", widget: "string" }
           - { label: "SEO Description", name: "seo_description", widget: "text" }
@@ -81,7 +82,7 @@ collections:
 
       - name: "services"
         label: "Services Page"
-        file: "content/pages/services.json"
+        file: "netlify-site/content/pages/services.json"
         fields:
           - { label: "SEO Title", name: "seo_title", widget: "string" }
           - { label: "SEO Description", name: "seo_description", widget: "text" }
@@ -97,7 +98,7 @@ collections:
 
       - name: "pricing"
         label: "Pricing Page"
-        file: "content/pages/pricing.json"
+        file: "netlify-site/content/pages/pricing.json"
         fields:
           - { label: "SEO Title", name: "seo_title", widget: "string" }
           - { label: "SEO Description", name: "seo_description", widget: "text" }
@@ -120,7 +121,7 @@ collections:
 
       - name: "testimonials"
         label: "Testimonials Page"
-        file: "content/pages/testimonials.json"
+        file: "netlify-site/content/pages/testimonials.json"
         fields:
           - { label: "SEO Title", name: "seo_title", widget: "string" }
           - { label: "SEO Description", name: "seo_description", widget: "text" }
@@ -137,7 +138,7 @@ collections:
 
       - name: "faq"
         label: "FAQ Page"
-        file: "content/pages/faq.json"
+        file: "netlify-site/content/pages/faq.json"
         fields:
           - { label: "SEO Title", name: "seo_title", widget: "string" }
           - { label: "SEO Description", name: "seo_description", widget: "text" }
@@ -153,7 +154,7 @@ collections:
 
       - name: "contact"
         label: "Contact Page"
-        file: "content/pages/contact.json"
+        file: "netlify-site/content/pages/contact.json"
         fields:
           - { label: "SEO Title", name: "seo_title", widget: "string" }
           - { label: "SEO Description", name: "seo_description", widget: "text" }
@@ -163,7 +164,7 @@ collections:
 
   - name: "blog"
     label: "Blog Posts"
-    folder: "content/blog"
+    folder: "netlify-site/content/blog"
     create: true
     slug: "{{slug}}"
     extension: "json"
