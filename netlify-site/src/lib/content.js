@@ -1,4 +1,5 @@
 import settings from '../../content/settings.json';
+import { marked } from 'marked';
 
 const blogModules = import.meta.glob('/content/blog/*.json', { eager: true });
 
@@ -15,6 +16,12 @@ export function getBlogPosts() {
 
 export function getBlogPostBySlug(slug) {
   return getBlogPosts().find((p) => p.slug === slug);
+}
+
+export function renderMarkdown(text) {
+  if (!text) return '';
+  marked.setOptions({ breaks: true });
+  return marked.parse(text);
 }
 
 export function applyMeta(seoTitle, seoDescription) {
@@ -43,6 +50,26 @@ gtag('js', new Date());
 gtag('config', '${gaId}');`;
   document.head.appendChild(s1);
   document.head.appendChild(s2);
+}
+
+export function applyCustomHeadCode(codeString) {
+  document.querySelectorAll('[data-wbm-custom]').forEach((n) => n.remove());
+  if (!codeString || !codeString.trim()) return;
+  const wrapper = document.createElement('div');
+  wrapper.innerHTML = codeString;
+  Array.from(wrapper.childNodes).forEach((node) => {
+    if (node.nodeType === 1 && node.tagName === 'SCRIPT') {
+      const s = document.createElement('script');
+      Array.from(node.attributes || []).forEach((attr) => s.setAttribute(attr.name, attr.value));
+      s.textContent = node.textContent;
+      s.setAttribute('data-wbm-custom', '1');
+      document.head.appendChild(s);
+    } else if (node.nodeType === 1) {
+      const clone = node.cloneNode(true);
+      clone.setAttribute('data-wbm-custom', '1');
+      document.head.appendChild(clone);
+    }
+  });
 }
 
 export function injectEmbedCode(container, htmlString) {
