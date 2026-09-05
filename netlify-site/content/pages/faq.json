@@ -5,9 +5,22 @@
   "title": "Common questions",
   "sub": "If you don't see your question here, book a call and ask directly.",
   "items": [
-    { "q": "How is this different from a marketing agency?", "a": "Most agencies focus on generating more leads. We start by finding out where the leads you already have are disappearing in your pipeline, then fix that before spending more on ad traffic." },
-    { "q": "How long does a pipeline audit take?", "a": "Most audits are completed within a few business days of getting your numbers, followed by a 30-minute walkthrough call to go over the findings." },
-    { "q": "Do I need to change my CRM?", "a": "No. We work with whatever system you're already using — the audit is about your process and conversion rates, not the software." },
-    { "q": "What if my numbers are already good?", "a": "Great — then the audit confirms it and shows you where the next highest-leverage improvement is instead." }
-  ]
+    {
+      "q": "How is this different from a marketing agency?",
+      "a": "Most agencies focus on generating more leads. We start by finding out where the leads you already have are disappearing in your pipeline, then fix that before spending more on ad traffic."
+    },
+    {
+      "q": "How long does a pipeline audit take?",
+      "a": "Most audits are completed within a few business days of getting your numbers, followed by a 30-minute walkthrough call to go over the findings."
+    },
+    {
+      "q": "Do I need to change my CRM?",
+      "a": "No. We work with whatever system you're already using \u2014 the audit is about your process and conversion rates, not the software."
+    },
+    {
+      "q": "What if my numbers are already good?",
+      "a": "Great \u2014 then the audit confirms it and shows you where the next highest-leverage improvement is instead."
+    }
+  ],
+  "extra_content": ""
 }

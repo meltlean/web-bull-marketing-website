@@ -11,7 +11,12 @@
       "period": "one-time",
       "highlighted": false,
       "cta_label": "Book the Audit",
-      "features": ["Full lead-to-close funnel breakdown", "Dollar value on every conversion gap", "30-minute walkthrough call", "Written action plan"]
+      "features": [
+        "Full lead-to-close funnel breakdown",
+        "Dollar value on every conversion gap",
+        "30-minute walkthrough call",
+        "Written action plan"
+      ]
     },
     {
       "name": "Growth Partner",
@@ -19,7 +24,13 @@
       "period": "/month",
       "highlighted": true,
       "cta_label": "Book a Call",
-      "features": ["Everything in Pipeline Audit", "Lead generation systems managed for you", "Follow-up & close rate coaching", "Monthly pipeline reporting", "Priority support"]
+      "features": [
+        "Everything in Pipeline Audit",
+        "Lead generation systems managed for you",
+        "Follow-up & close rate coaching",
+        "Monthly pipeline reporting",
+        "Priority support"
+      ]
     },
     {
       "name": "Done-For-You Funnel",
@@ -27,7 +38,13 @@
       "period": "starting at",
       "highlighted": false,
       "cta_label": "Book a Call",
-      "features": ["Custom landing page & calculator build", "CRM & booking integration", "Analytics & tracking setup", "30 days of post-launch support"]
+      "features": [
+        "Custom landing page & calculator build",
+        "CRM & booking integration",
+        "Analytics & tracking setup",
+        "30 days of post-launch support"
+      ]
     }
-  ]
+  ],
+  "extra_content": ""
 }
