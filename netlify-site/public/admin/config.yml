@@ -196,6 +196,8 @@ collections:
           - { label: "Case Studies", value: "case-studies" }
           - { label: "Tools & Calculators", value: "tools-calculators" }
       - { label: "Featured Image", name: "image", widget: "image", required: false, hint: "Optional. Shows at the top of the post and on the blog list card." }
+      - { label: "SEO Title", name: "seo_title", widget: "string", required: false, hint: "Shown in the browser tab and Google search results. If left blank, the Title above is used instead." }
+      - { label: "SEO Description", name: "seo_description", widget: "text", required: false, hint: "Shown under the title in Google search results. If left blank, the Short Excerpt below is used instead." }
       - { label: "URL Slug", name: "slug", widget: "string", hint: "Used in the web address, e.g. my-post-title" }
       - { label: "Date", name: "date", widget: "date", format: "YYYY-MM-DD" }
       - { label: "Short Excerpt (shown on the blog list)", name: "excerpt", widget: "text" }
