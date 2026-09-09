@@ -8,7 +8,11 @@ export default function BlogPost() {
   const post = getBlogPostBySlug(slug);
 
   useEffect(() => {
-    if (post) applyMeta(`${post.title} | Web Bull Marketing`, post.excerpt);
+    if (post) {
+      const title = post.seo_title && post.seo_title.trim() ? post.seo_title : `${post.title} | Web Bull Marketing`;
+      const description = post.seo_description && post.seo_description.trim() ? post.seo_description : post.excerpt;
+      applyMeta(title, description);
+    }
   }, [post]);
 
   if (!post) {
