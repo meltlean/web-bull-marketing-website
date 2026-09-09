@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Routes, Route, Link, useLocation, useNavigate } from 'react-router-dom';
-import { Menu, X, Calendar, Instagram, Facebook, Twitter, Linkedin, Youtube, Music2, Globe } from 'lucide-react';
+import { Menu, X, Calendar, Instagram, Facebook, Twitter, Linkedin, Youtube, Music2, Globe, ChevronDown } from 'lucide-react';
 import { getSettings, applyGA, injectEmbedCode, applyCustomHeadCode } from './lib/content.js';
 
 import Home from './pages/Home.jsx';
@@ -12,6 +12,9 @@ import FAQ from './pages/FAQ.jsx';
 import Blog from './pages/Blog.jsx';
 import BlogPost from './pages/BlogPost.jsx';
 import Contact from './pages/Contact.jsx';
+import ResourcesHub from './pages/ResourcesHub.jsx';
+import MarketingIntelligenceHub from './pages/MarketingIntelligenceHub.jsx';
+import CategoryPage from './pages/CategoryPage.jsx';
 
 const NAV_ITEMS = [
   { to: '/', label: 'Home' },
@@ -20,6 +23,14 @@ const NAV_ITEMS = [
   { to: '/testimonials', label: 'Testimonials' },
   { to: '/faq', label: 'FAQ' },
   { to: '/blog', label: 'Blog' },
+  {
+    to: '/resources', label: 'Resources', children: [
+      { to: '/marketing-intelligence', label: 'Marketing Intelligence' },
+      { to: '/contractor-marketing-guides', label: 'Contractor Marketing Guides' },
+      { to: '/case-studies', label: 'Case Studies' },
+      { to: '/tools-calculators', label: 'Tools & Calculators' },
+    ],
+  },
   { to: '/about', label: 'About' },
   { to: '/contact', label: 'Contact' },
 ];
@@ -37,6 +48,7 @@ function iconFor(name) {
 export default function App() {
   const settings = getSettings();
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
+  const [mobileResourcesOpen, setMobileResourcesOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
   const chatbotRef = useRef(null);
@@ -61,7 +73,16 @@ export default function App() {
         <div className="wrap topbar-inner">
           <Link to="/" className="brandmark"><img src="/logo.png" alt="Web Bull Marketing" /></Link>
           <nav className="nav-links desktop-only">
-            {NAV_ITEMS.map((item) => (
+            {NAV_ITEMS.map((item) => item.children ? (
+              <div className="nav-dropdown" key={item.label}>
+                <Link to={item.to} className={location.pathname.startsWith(item.to) || item.children.some((c) => location.pathname === c.to) ? 'active' : ''}>
+                  {item.label} <ChevronDown size={13} />
+                </Link>
+                <div className="nav-dropdown-menu">
+                  {item.children.map((c) => (<Link key={c.to} to={c.to}>{c.label}</Link>))}
+                </div>
+              </div>
+            ) : (
               <Link key={item.to} to={item.to} className={location.pathname === item.to ? 'active' : ''}>{item.label}</Link>
             ))}
           </nav>
@@ -72,7 +93,21 @@ export default function App() {
         </div>
         {mobileNavOpen && (
           <div className="mobile-nav wrap">
-            {NAV_ITEMS.map((item) => (<Link key={item.to} to={item.to}>{item.label}</Link>))}
+            {NAV_ITEMS.map((item) => item.children ? (
+              <div className="mobile-nav-group" key={item.label}>
+                <button className="mobile-nav-toggle" onClick={() => setMobileResourcesOpen((v) => !v)}>
+                  {item.label}
+                  <ChevronDown size={14} className={mobileResourcesOpen ? 'chevron-open' : ''} />
+                </button>
+                {mobileResourcesOpen && (
+                  <div className="mobile-nav-sub">
+                    {item.children.map((c) => (<Link key={c.to} to={c.to}>{c.label}</Link>))}
+                  </div>
+                )}
+              </div>
+            ) : (
+              <Link key={item.to} to={item.to}>{item.label}</Link>
+            ))}
             <a href={bookingLink} target="_blank" rel="noreferrer" className="cta-mini" style={{ marginTop: 10, justifyContent: 'center' }}><Calendar size={14} /> Book a Call</a>
           </div>
         )}
@@ -88,6 +123,16 @@ export default function App() {
           <Route path="/faq" element={<FAQ />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:slug" element={<BlogPost />} />
+          <Route path="/resources" element={<ResourcesHub />} />
+          <Route path="/marketing-intelligence" element={<MarketingIntelligenceHub />} />
+          <Route path="/web-marketing-intelligence" element={<CategoryPage category="web-marketing-intelligence" />} />
+          <Route path="/local-seo" element={<CategoryPage category="local-seo" />} />
+          <Route path="/google-ads" element={<CategoryPage category="google-ads" />} />
+          <Route path="/ai-search" element={<CategoryPage category="ai-search" />} />
+          <Route path="/contractor-marketing" element={<CategoryPage category="contractor-marketing" />} />
+          <Route path="/contractor-marketing-guides" element={<CategoryPage category="contractor-marketing-guides" />} />
+          <Route path="/case-studies" element={<CategoryPage category="case-studies" />} />
+          <Route path="/tools-calculators" element={<CategoryPage category="tools-calculators" />} />
           <Route path="/contact" element={<Contact bookingLink={bookingLink} formEmbedUrl={settings.form_embed_url} socials={socials} />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
