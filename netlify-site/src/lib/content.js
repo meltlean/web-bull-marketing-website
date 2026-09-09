@@ -3,6 +3,17 @@ import { marked } from 'marked';
 
 const blogModules = import.meta.glob('/content/blog/*.json', { eager: true });
 
+export const CATEGORIES = {
+  'web-marketing-intelligence': { label: 'Web Marketing Intelligence', parent: 'marketing-intelligence' },
+  'local-seo': { label: 'Local SEO', parent: 'marketing-intelligence' },
+  'google-ads': { label: 'Google Ads', parent: 'marketing-intelligence' },
+  'ai-search': { label: 'AI Search', parent: 'marketing-intelligence' },
+  'contractor-marketing': { label: 'Contractor Marketing', parent: 'marketing-intelligence' },
+  'contractor-marketing-guides': { label: 'Contractor Marketing Guides', parent: null },
+  'case-studies': { label: 'Case Studies', parent: null },
+  'tools-calculators': { label: 'Tools & Calculators', parent: null },
+};
+
 export function getSettings() {
   return settings;
 }
@@ -12,6 +23,14 @@ export function getBlogPosts() {
   return posts
     .filter((p) => p.published !== false)
     .sort((a, b) => new Date(b.date) - new Date(a.date));
+}
+
+export function getPostsByCategory(category) {
+  return getBlogPosts().filter((p) => p.category === category);
+}
+
+export function getCategoryMeta(slug) {
+  return CATEGORIES[slug] || { label: slug, parent: null };
 }
 
 export function getBlogPostBySlug(slug) {
