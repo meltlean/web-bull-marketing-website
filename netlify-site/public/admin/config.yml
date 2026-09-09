@@ -181,6 +181,20 @@ collections:
     format: "json"
     fields:
       - { label: "Title", name: "title", widget: "string" }
+      - label: "Category"
+        name: "category"
+        widget: "select"
+        required: false
+        hint: "Controls which Resources section this article appears under."
+        options:
+          - { label: "Web Marketing Intelligence", value: "web-marketing-intelligence" }
+          - { label: "Local SEO", value: "local-seo" }
+          - { label: "Google Ads", value: "google-ads" }
+          - { label: "AI Search", value: "ai-search" }
+          - { label: "Contractor Marketing", value: "contractor-marketing" }
+          - { label: "Contractor Marketing Guides", value: "contractor-marketing-guides" }
+          - { label: "Case Studies", value: "case-studies" }
+          - { label: "Tools & Calculators", value: "tools-calculators" }
       - { label: "Featured Image", name: "image", widget: "image", required: false, hint: "Optional. Shows at the top of the post and on the blog list card." }
       - { label: "URL Slug", name: "slug", widget: "string", hint: "Used in the web address, e.g. my-post-title" }
       - { label: "Date", name: "date", widget: "date", format: "YYYY-MM-DD" }
