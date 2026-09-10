@@ -2,6 +2,7 @@ import settings from '../../content/settings.json';
 import { marked } from 'marked';
 
 const blogModules = import.meta.glob('/content/blog/*.json', { eager: true });
+const customPageModules = import.meta.glob('/content/custom-pages/*.json', { eager: true });
 
 export const CATEGORIES = {
   'web-marketing-intelligence': { label: 'Web Marketing Intelligence', parent: 'marketing-intelligence' },
@@ -35,6 +36,15 @@ export function getCategoryMeta(slug) {
 
 export function getBlogPostBySlug(slug) {
   return getBlogPosts().find((p) => p.slug === slug);
+}
+
+export function getCustomPages() {
+  const pages = Object.values(customPageModules).map((mod) => mod.default || mod);
+  return pages.filter((p) => p.published !== false);
+}
+
+export function getCustomPageBySlug(slug) {
+  return getCustomPages().find((p) => p.slug === slug);
 }
 
 export function renderMarkdown(text) {
