@@ -172,6 +172,21 @@ collections:
           - { label: "Subtext", name: "sub", widget: "text" }
           - { label: "Extra Content (Optional)", name: "extra_content", widget: "markdown", required: false, hint: "Add extra images, video embeds, or rich content anywhere on this page. Shows at the very bottom of the page." }
 
+  - name: "custom_pages"
+    label: "Custom Pages"
+    folder: "netlify-site/content/custom-pages"
+    create: true
+    slug: "{{slug}}"
+    extension: "json"
+    format: "json"
+    fields:
+      - { label: "Page Title", name: "title", widget: "string" }
+      - { label: "URL Slug", name: "slug", widget: "string", hint: "Your page will be live at webbullmarketing.com/this-slug — use lowercase letters and dashes only, no spaces." }
+      - { label: "SEO Title", name: "seo_title", widget: "string", required: false, hint: "If left blank, the Page Title above is used instead." }
+      - { label: "SEO Description", name: "seo_description", widget: "text", required: false }
+      - { label: "Page Content", name: "body", widget: "markdown", hint: "Use the toolbar to add images, links, and formatting. To embed something from another tool, switch to the '<>' raw code view and paste the embed code there." }
+      - { label: "Published?", name: "published", widget: "boolean", default: true }
+
   - name: "blog"
     label: "Blog Posts"
     folder: "netlify-site/content/blog"
