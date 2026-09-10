@@ -300,7 +300,13 @@ footer{ padding:46px 0 64px; text-align:center; color:var(--gray); font-size:12.
   text-align: center;
 }
 
-.gb-intro h2,
+.gb-intro h2 {
+  margin: 8px 0 12px;
+  color: #ffffff;
+  font-size: clamp(30px, 4vw, 46px);
+  line-height: 1.08;
+}
+
 .gb-content-block h2,
 .gb-faq h2 {
   margin: 8px 0 12px;
@@ -309,7 +315,11 @@ footer{ padding:46px 0 64px; text-align:center; color:var(--gray); font-size:12.
   line-height: 1.08;
 }
 
-.gb-intro p,
+.gb-intro p {
+  color: rgba(255, 255, 255, 0.78);
+  line-height: 1.7;
+}
+
 .gb-content-block p,
 .gb-faq p {
   color: #667480;
