@@ -16,6 +16,7 @@ import RemodelingGrowthCalculator from './pages/RemodelingGrowthCalculator.jsx';
 import ResourcesHub from './pages/ResourcesHub.jsx';
 import MarketingIntelligenceHub from './pages/MarketingIntelligenceHub.jsx';
 import CategoryPage from './pages/CategoryPage.jsx';
+import CustomPage from './pages/CustomPage.jsx';
 
 const NAV_ITEMS = [
   { to: '/', label: 'Home' },
@@ -137,6 +138,7 @@ export default function App() {
           <Route path="/tools-calculators" element={<CategoryPage category="tools-calculators" />} />
           <Route path="/contact" element={<Contact bookingLink={bookingLink} formEmbedUrl={settings.form_embed_url} socials={socials} />} />
           <Route path="/remodeling-growth-calculator" element={<RemodelingGrowthCalculator bookingLink={bookingLink} />} />
+          <Route path="/:slug" element={<CustomPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
