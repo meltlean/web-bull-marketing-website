@@ -12,10 +12,10 @@ import FAQ from './pages/FAQ.jsx';
 import Blog from './pages/Blog.jsx';
 import BlogPost from './pages/BlogPost.jsx';
 import Contact from './pages/Contact.jsx';
+import RemodelingGrowthCalculator from './pages/RemodelingGrowthCalculator.jsx';
 import ResourcesHub from './pages/ResourcesHub.jsx';
 import MarketingIntelligenceHub from './pages/MarketingIntelligenceHub.jsx';
 import CategoryPage from './pages/CategoryPage.jsx';
-import RemodelingGrowthCalculator from './pages/RemodelingGrowthCalculator.jsx';
 
 const NAV_ITEMS = [
   { to: '/', label: 'Home' },
@@ -135,11 +135,8 @@ export default function App() {
           <Route path="/contractor-marketing-guides" element={<CategoryPage category="contractor-marketing-guides" />} />
           <Route path="/case-studies" element={<CategoryPage category="case-studies" />} />
           <Route path="/tools-calculators" element={<CategoryPage category="tools-calculators" />} />
-           <Route
-  path="/remodeling-growth-calculator"
-  element={<RemodelingGrowthCalculator bookingLink={bookingLink} />}
-/>
           <Route path="/contact" element={<Contact bookingLink={bookingLink} formEmbedUrl={settings.form_embed_url} socials={socials} />} />
+          <Route path="/remodeling-growth-calculator" element={<RemodelingGrowthCalculator bookingLink={bookingLink} />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
