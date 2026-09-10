@@ -30,6 +30,7 @@ const NAV_ITEMS = [
       { to: '/contractor-marketing-guides', label: 'Contractor Marketing Guides' },
       { to: '/case-studies', label: 'Case Studies' },
       { to: '/tools-calculators', label: 'Tools & Calculators' },
+      { to: '/remodeling-growth-calculator', label: 'Growth Calculator' },
     ],
   },
   { to: '/about', label: 'About' },
