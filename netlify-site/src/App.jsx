@@ -15,6 +15,7 @@ import Contact from './pages/Contact.jsx';
 import ResourcesHub from './pages/ResourcesHub.jsx';
 import MarketingIntelligenceHub from './pages/MarketingIntelligenceHub.jsx';
 import CategoryPage from './pages/CategoryPage.jsx';
+import RemodelingGrowthCalculator from './pages/RemodelingGrowthCalculator.jsx';
 
 const NAV_ITEMS = [
   { to: '/', label: 'Home' },
