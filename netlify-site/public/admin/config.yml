@@ -35,6 +35,7 @@ collections:
       - name: "home"
         label: "Home Page"
         file: "netlify-site/content/pages/home.json"
+        preview_path: ""
         fields:
           - { label: "SEO Title", name: "seo_title", widget: "string" }
           - { label: "SEO Description", name: "seo_description", widget: "text" }
@@ -67,6 +68,7 @@ collections:
       - name: "about"
         label: "About Page"
         file: "netlify-site/content/pages/about.json"
+        preview_path: "about"
         fields:
           - { label: "SEO Title", name: "seo_title", widget: "string" }
           - { label: "SEO Description", name: "seo_description", widget: "text" }
@@ -86,6 +88,7 @@ collections:
       - name: "services"
         label: "Services Page"
         file: "netlify-site/content/pages/services.json"
+        preview_path: "services"
         fields:
           - { label: "SEO Title", name: "seo_title", widget: "string" }
           - { label: "SEO Description", name: "seo_description", widget: "text" }
@@ -104,6 +107,7 @@ collections:
       - name: "pricing"
         label: "Pricing Page"
         file: "netlify-site/content/pages/pricing.json"
+        preview_path: "pricing"
         fields:
           - { label: "SEO Title", name: "seo_title", widget: "string" }
           - { label: "SEO Description", name: "seo_description", widget: "text" }
@@ -128,6 +132,7 @@ collections:
       - name: "testimonials"
         label: "Testimonials Page"
         file: "netlify-site/content/pages/testimonials.json"
+        preview_path: "testimonials"
         fields:
           - { label: "SEO Title", name: "seo_title", widget: "string" }
           - { label: "SEO Description", name: "seo_description", widget: "text" }
@@ -147,6 +152,7 @@ collections:
       - name: "faq"
         label: "FAQ Page"
         file: "netlify-site/content/pages/faq.json"
+        preview_path: "faq"
         fields:
           - { label: "SEO Title", name: "seo_title", widget: "string" }
           - { label: "SEO Description", name: "seo_description", widget: "text" }
@@ -164,6 +170,7 @@ collections:
       - name: "contact"
         label: "Contact Page"
         file: "netlify-site/content/pages/contact.json"
+        preview_path: "contact"
         fields:
           - { label: "SEO Title", name: "seo_title", widget: "string" }
           - { label: "SEO Description", name: "seo_description", widget: "text" }
@@ -177,6 +184,7 @@ collections:
     folder: "netlify-site/content/custom-pages"
     create: true
     slug: "{{slug}}"
+    preview_path: "{{fields.slug}}"
     extension: "json"
     format: "json"
     fields:
@@ -192,6 +200,7 @@ collections:
     folder: "netlify-site/content/blog"
     create: true
     slug: "{{slug}}"
+    preview_path: "blog/{{fields.slug}}"
     extension: "json"
     format: "json"
     fields:
