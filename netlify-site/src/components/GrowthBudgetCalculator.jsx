@@ -14,6 +14,14 @@ const number = (n, digits = 0) =>
     maximumFractionDigits: digits,
   }).format(Number.isFinite(n) ? n : 0);
 
+// Lets visitors enter a bare domain (captainremodel.com); Netlify gets https://captainremodel.com
+function normalizeWebsite(value) {
+  const website = value.trim();
+  if (!website) return '';
+  if (/^https?:\/\//i.test(website)) return website;
+  return `https://${website}`;
+}
+
 function getAttribution() {
   if (typeof window === 'undefined') return {};
   const params = new URLSearchParams(window.location.search);
@@ -211,6 +219,7 @@ export default function GrowthBudgetCalculator({ bookingLink = '#', onLeadSubmit
     const payload = {
       'form-name': FORM_NAME,
       ...lead,
+      website: normalizeWebsite(lead.website),
       ...attribution,
       current_revenue: values.currentRevenue,
       target_revenue: values.targetRevenue,
