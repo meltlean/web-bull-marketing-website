@@ -1,0 +1,4 @@
+node_modules/
+dist/
+.claude/
+/public/sitemap.xml

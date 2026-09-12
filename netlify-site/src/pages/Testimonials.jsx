@@ -1,17 +1,21 @@
-import React, { useEffect } from 'react';
+import React from 'react';
+import { Head } from 'vite-react-ssg';
 import content from '../../content/pages/testimonials.json';
-import { applyMeta, renderMarkdown } from '../lib/content.js';
+import { renderMarkdown } from '../lib/content.js';
 
 export default function Testimonials() {
   const p = content;
-  useEffect(() => { applyMeta(p.seo_title, p.seo_description); }, []);
 
   return (
     <section style={{ paddingTop: 130 }}>
+      <Head>
+        <title>{p.seo_title}</title>
+        <meta name="description" content={p.seo_description} />
+      </Head>
       <div className="wrap">
         <div className="section-head">
           <div className="eyebrow"><span>{p.eyebrow}</span></div>
-          <h2>{p.title}</h2>
+          <h1>{p.title}</h1>
           <p>{p.sub}</p>
         </div>
         <div className="testimonial-grid">

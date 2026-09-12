@@ -1,7 +1,8 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
+import { Head } from 'vite-react-ssg';
 import { ChevronRight } from 'lucide-react';
-import { applyMeta, CATEGORIES } from '../lib/content.js';
+import { CATEGORIES } from '../lib/content.js';
 
 const SUBCATEGORIES = [
   { to: '/web-marketing-intelligence', slug: 'web-marketing-intelligence', body: 'Website performance, conversion, and overall digital marketing strategy for remodelers.' },
@@ -12,16 +13,16 @@ const SUBCATEGORIES = [
 ];
 
 export default function MarketingIntelligenceHub() {
-  useEffect(() => {
-    applyMeta('Marketing Intelligence | Web Bull Marketing', 'Web marketing, local SEO, Google Ads, AI search, and contractor marketing intelligence for remodelers nationwide.');
-  }, []);
-
   return (
     <section style={{ paddingTop: 130 }}>
+      <Head>
+        <title>Marketing Intelligence | Web Bull Marketing</title>
+        <meta name="description" content="Web marketing, local SEO, Google Ads, AI search, and contractor marketing intelligence for remodelers nationwide." />
+      </Head>
       <div className="wrap">
         <div className="section-head">
           <div className="eyebrow"><span>Resources / Marketing Intelligence</span></div>
-          <h2>Marketing Intelligence</h2>
+          <h1>Marketing Intelligence</h1>
           <p>Pick a topic to browse articles, or check back as we add more.</p>
         </div>
         <div className="services-grid">

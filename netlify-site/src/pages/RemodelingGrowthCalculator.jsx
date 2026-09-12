@@ -1,17 +1,17 @@
-import React, { useEffect } from 'react';
-import { applyMeta } from '../lib/content.js';
+import React from 'react';
+import { useOutletContext } from 'react-router-dom';
+import { Head } from 'vite-react-ssg';
 import GrowthBudgetCalculator from '../components/GrowthBudgetCalculator.jsx';
 
-export default function RemodelingGrowthCalculator({ bookingLink = '#' }) {
-  useEffect(() => {
-    applyMeta(
-      'Remodeling Growth Budget Calculator | Web Bull Marketing',
-      'Calculate the revenue gap, customers, qualified leads, allowable CAC, target CPQL, growth budget, projected gross profit, and ROI required to reach your remodeling company revenue goal.'
-    );
-  }, []);
+export default function RemodelingGrowthCalculator() {
+  const { bookingLink = '#' } = useOutletContext();
 
   return (
     <>
+      <Head>
+        <title>Remodeling Growth Budget Calculator | Web Bull Marketing</title>
+        <meta name="description" content="Calculate the revenue gap, customers, qualified leads, allowable CAC, target CPQL, growth budget, projected gross profit, and ROI required to reach your remodeling company revenue goal." />
+      </Head>
       <header className="gb-page-hero">
         <div className="gb-page-hero-inner">
           <span className="gb-kicker">Free Remodeling Growth Economics Tool</span>

@@ -1,198 +1,86 @@
-<?xml version="1.0" encoding="UTF-8"?>
+// Generates public/sitemap.xml before every build, based on whatever
+// pages, blog posts, and custom pages actually exist at build time.
+// Runs automatically via the "prebuild" step in package.json — no manual
+// updates needed as content is added.
+
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const root = path.resolve(__dirname, '..');
+const SITE_URL = 'https://webbullmarketing.com';
+
+const today = new Date().toISOString().slice(0, 10);
+
+// Fixed, always-present pages on the site.
+const staticRoutes = [
+  { loc: '/', priority: '1.0' },
+  { loc: '/services', priority: '0.8' },
+  { loc: '/pricing', priority: '0.8' },
+  { loc: '/testimonials', priority: '0.6' },
+  { loc: '/faq', priority: '0.6' },
+  { loc: '/blog', priority: '0.7' },
+  { loc: '/about', priority: '0.6' },
+  { loc: '/contact', priority: '0.7' },
+  { loc: '/resources', priority: '0.7' },
+  { loc: '/marketing-intelligence', priority: '0.6' },
+  { loc: '/web-marketing-intelligence', priority: '0.6' },
+  { loc: '/local-seo', priority: '0.6' },
+  { loc: '/google-ads', priority: '0.6' },
+  { loc: '/ai-search', priority: '0.6' },
+  { loc: '/contractor-marketing', priority: '0.6' },
+  { loc: '/contractor-marketing-guides', priority: '0.6' },
+  { loc: '/case-studies', priority: '0.6' },
+  { loc: '/tools-calculators', priority: '0.6' },
+  { loc: '/remodeling-growth-calculator', priority: '0.7' },
+];
+
+function readJsonFilesFromDir(dirPath) {
+  if (!fs.existsSync(dirPath)) return [];
+  return fs
+    .readdirSync(dirPath)
+    .filter((f) => f.endsWith('.json'))
+    .map((f) => {
+      const raw = fs.readFileSync(path.join(dirPath, f), 'utf-8');
+      try {
+        return JSON.parse(raw);
+      } catch (e) {
+        console.warn(`sitemap: skipping unparsable file ${f}`);
+        return null;
+      }
+    })
+    .filter(Boolean);
+}
+
+const blogPosts = readJsonFilesFromDir(path.join(root, 'content/blog'))
+  .filter((p) => p.published !== false && p.slug)
+  .map((p) => ({ loc: `/blog/${p.slug}`, lastmod: p.date || today, priority: '0.6' }));
+
+const customPages = readJsonFilesFromDir(path.join(root, 'content/custom-pages'))
+  .filter((p) => p.published !== false && p.slug)
+  .map((p) => ({ loc: `/${p.slug}`, lastmod: today, priority: '0.5' }));
+
+const allRoutes = [
+  ...staticRoutes.map((r) => ({ ...r, lastmod: today })),
+  ...blogPosts,
+  ...customPages,
+];
+
+const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://webbullmarketing.com/</loc>
-    <lastmod>2026-09-12</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://webbullmarketing.com/services</loc>
-    <lastmod>2026-09-12</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://webbullmarketing.com/pricing</loc>
-    <lastmod>2026-09-12</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://webbullmarketing.com/testimonials</loc>
-    <lastmod>2026-09-12</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://webbullmarketing.com/faq</loc>
-    <lastmod>2026-09-12</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://webbullmarketing.com/blog</loc>
-    <lastmod>2026-09-12</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://webbullmarketing.com/about</loc>
-    <lastmod>2026-09-12</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://webbullmarketing.com/contact</loc>
-    <lastmod>2026-09-12</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://webbullmarketing.com/resources</loc>
-    <lastmod>2026-09-12</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://webbullmarketing.com/marketing-intelligence</loc>
-    <lastmod>2026-09-12</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://webbullmarketing.com/web-marketing-intelligence</loc>
-    <lastmod>2026-09-12</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://webbullmarketing.com/local-seo</loc>
-    <lastmod>2026-09-12</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://webbullmarketing.com/google-ads</loc>
-    <lastmod>2026-09-12</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://webbullmarketing.com/ai-search</loc>
-    <lastmod>2026-09-12</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://webbullmarketing.com/contractor-marketing</loc>
-    <lastmod>2026-09-12</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://webbullmarketing.com/contractor-marketing-guides</loc>
-    <lastmod>2026-09-12</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://webbullmarketing.com/case-studies</loc>
-    <lastmod>2026-09-12</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://webbullmarketing.com/tools-calculators</loc>
-    <lastmod>2026-09-12</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://webbullmarketing.com/remodeling-growth-calculator</loc>
-    <lastmod>2026-09-12</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://webbullmarketing.com/blog/appointment-no-show-fixes</loc>
-    <lastmod>2026-09-12</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://webbullmarketing.com/blog/marketing-plan-growing-contracting-business</loc>
-    <lastmod>2026-09-12</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://webbullmarketing.com/blog/five-point-close-rate-gap</loc>
-    <lastmod>2026-06-12</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://webbullmarketing.com/blog/google-ads-for-remodelers</loc>
-    <lastmod>2026-09-12</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://webbullmarketing.com/blog/multi-community-home-builder-digital-marketing-case-study</loc>
-    <lastmod>2026-09-12</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://webbullmarketing.com/blog/local-seo-home-renovation-case-study</loc>
-    <lastmod>2026-09-12</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://webbullmarketing.com/blog/remodeling-sales-cycle-length</loc>
-    <lastmod>2026-09-12</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://webbullmarketing.com/blog/how-much-should-remodelers-spend-google-ads</loc>
-    <lastmod>2026-09-12</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://webbullmarketing.com/blog/home-renovation-organic-search-conversion-case-study</loc>
-    <lastmod>2026-09-12</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://webbullmarketing.com/blog/remodelers-ai-search-results</loc>
-    <lastmod>2026-09-12</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://webbullmarketing.com/blog/how-to-calculate-true-close-rate</loc>
-    <lastmod>2026-09-12</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://webbullmarketing.com/blog/local-seo-remodeling-companies</loc>
-    <lastmod>2026-09-12</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://webbullmarketing.com/blog/qualifying-leads-without-losing-them</loc>
-    <lastmod>2026-05-28</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://webbullmarketing.com/blog/sales-scripts-vs-sales-systems</loc>
-    <lastmod>2026-09-12</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://webbullmarketing.com/blog/hidden-cost-unorganized-crm</loc>
-    <lastmod>2026-09-12</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://webbullmarketing.com/blog/cost-of-slow-follow-up</loc>
-    <lastmod>2026-09-12</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://webbullmarketing.com/blog/website-metrics-remodelers-should-track</loc>
-    <lastmod>2026-09-12</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://webbullmarketing.com/blog/contractor-seo-wins-that-drive-qualified-remodeling-leads</loc>
-    <lastmod>2026-09-12</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://webbullmarketing.com/blog/healthy-remodeling-sales-funnel-benchmarks</loc>
-    <lastmod>2026-09-12</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://webbullmarketing.com/blog/more-leads-isnt-always-the-answer</loc>
-    <lastmod>2026-09-12</lastmod>
-    <priority>0.6</priority>
-  </url>
+${allRoutes
+  .map(
+    (r) => `  <url>
+    <loc>${SITE_URL}${r.loc}</loc>
+    <lastmod>${r.lastmod}</lastmod>
+    <priority>${r.priority}</priority>
+  </url>`
+  )
+  .join('\n')}
 </urlset>
+`;
+
+const outPath = path.join(root, 'public/sitemap.xml');
+fs.writeFileSync(outPath, xml);
+console.log(`sitemap.xml generated with ${allRoutes.length} URLs -> ${outPath}`);

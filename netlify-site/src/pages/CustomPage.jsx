@@ -1,17 +1,11 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { getCustomPageBySlug, applyMeta, renderMarkdown } from '../lib/content.js';
+import { Head } from 'vite-react-ssg';
+import { getCustomPageBySlug, renderMarkdown } from '../lib/content.js';
 
 export default function CustomPage() {
   const { slug } = useParams();
   const page = getCustomPageBySlug(slug);
-
-  useEffect(() => {
-    if (page) {
-      const title = page.seo_title && page.seo_title.trim() ? page.seo_title : `${page.title} | Web Bull Marketing`;
-      applyMeta(title, page.seo_description);
-    }
-  }, [page]);
 
   if (!page) {
     return (
@@ -21,8 +15,14 @@ export default function CustomPage() {
     );
   }
 
+  const title = page.seo_title && page.seo_title.trim() ? page.seo_title : `${page.title} | Web Bull Marketing`;
+
   return (
     <section style={{ paddingTop: 130 }}>
+      <Head>
+        <title>{title}</title>
+        {page.seo_description && <meta name="description" content={page.seo_description} />}
+      </Head>
       <div className="wrap" style={{ maxWidth: 760 }}>
         <h1>{page.title}</h1>
         <div className="rich-content" dangerouslySetInnerHTML={{ __html: renderMarkdown(page.body) }} />

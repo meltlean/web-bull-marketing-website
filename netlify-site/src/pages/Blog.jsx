@@ -1,18 +1,22 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
+import { Head } from 'vite-react-ssg';
 import { ChevronRight } from 'lucide-react';
-import { getBlogPosts, applyMeta } from '../lib/content.js';
+import { getBlogPosts } from '../lib/content.js';
 
 export default function Blog() {
   const posts = getBlogPosts();
-  useEffect(() => { applyMeta('Blog | Web Bull Marketing', 'Insights on pipeline, marketing, and revenue for remodeling businesses.'); }, []);
 
   return (
     <section style={{ paddingTop: 130 }}>
+      <Head>
+        <title>Blog | Web Bull Marketing</title>
+        <meta name="description" content="Insights on pipeline, marketing, and revenue for remodeling businesses." />
+      </Head>
       <div className="wrap">
         <div className="section-head">
           <div className="eyebrow"><span>From The Blog</span></div>
-          <h2>Pipeline &amp; revenue insights for remodelers</h2>
+          <h1>Pipeline &amp; revenue insights for remodelers</h1>
         </div>
         <div className="blog-grid">
           {posts.map((post) => (

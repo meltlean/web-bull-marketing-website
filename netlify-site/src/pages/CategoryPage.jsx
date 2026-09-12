@@ -1,25 +1,25 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
+import { Head } from 'vite-react-ssg';
 import { ChevronRight } from 'lucide-react';
-import { getPostsByCategory, getCategoryMeta, applyMeta } from '../lib/content.js';
+import { getPostsByCategory, getCategoryMeta } from '../lib/content.js';
 
 export default function CategoryPage({ category, seoTitleOverride, seoDescriptionOverride }) {
   const meta = getCategoryMeta(category);
   const posts = getPostsByCategory(category);
-
-  useEffect(() => {
-    applyMeta(
-      seoTitleOverride || `${meta.label} | Web Bull Marketing`,
-      seoDescriptionOverride || `${meta.label} articles and insights for design-build firms and high-end remodelers nationwide.`
-    );
-  }, [category]);
+  const seoTitle = seoTitleOverride || `${meta.label} | Web Bull Marketing`;
+  const seoDescription = seoDescriptionOverride || `${meta.label} articles and insights for design-build firms and high-end remodelers nationwide.`;
 
   return (
     <section style={{ paddingTop: 130 }}>
+      <Head>
+        <title>{seoTitle}</title>
+        <meta name="description" content={seoDescription} />
+      </Head>
       <div className="wrap">
         <div className="section-head">
           <div className="eyebrow"><span>Resources</span></div>
-          <h2>{meta.label}</h2>
+          <h1>{meta.label}</h1>
         </div>
         <div className="blog-grid">
           {posts.map((post) => (
