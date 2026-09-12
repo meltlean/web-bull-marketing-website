@@ -1,18 +1,24 @@
-import React, { useEffect } from 'react';
+import React from 'react';
+import { useOutletContext } from 'react-router-dom';
+import { Head } from 'vite-react-ssg';
 import { Check } from 'lucide-react';
 import content from '../../content/pages/pricing.json';
-import { applyMeta, renderMarkdown } from '../lib/content.js';
+import { renderMarkdown } from '../lib/content.js';
 
-export default function Pricing({ bookingLink }) {
+export default function Pricing() {
+  const { bookingLink } = useOutletContext();
   const p = content;
-  useEffect(() => { applyMeta(p.seo_title, p.seo_description); }, []);
 
   return (
     <section style={{ paddingTop: 130 }}>
+      <Head>
+        <title>{p.seo_title}</title>
+        <meta name="description" content={p.seo_description} />
+      </Head>
       <div className="wrap">
         <div className="section-head">
           <div className="eyebrow"><span>{p.eyebrow}</span></div>
-          <h2>{p.title}</h2>
+          <h1>{p.title}</h1>
           <p>{p.sub}</p>
         </div>
         <div className="pricing-grid">

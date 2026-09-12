@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
+import { Head } from 'vite-react-ssg';
 import { ChevronRight } from 'lucide-react';
-import { applyMeta } from '../lib/content.js';
 
 const SECTIONS = [
   { to: '/marketing-intelligence', title: 'Marketing Intelligence', body: 'Web marketing, local SEO, Google Ads, AI search, and general contractor marketing insights.' },
@@ -11,16 +11,16 @@ const SECTIONS = [
 ];
 
 export default function ResourcesHub() {
-  useEffect(() => {
-    applyMeta('Resources | Web Bull Marketing', 'Marketing intelligence, contractor guides, case studies, and tools for design-build firms and high-end remodelers nationwide.');
-  }, []);
-
   return (
     <section style={{ paddingTop: 130 }}>
+      <Head>
+        <title>Resources | Web Bull Marketing</title>
+        <meta name="description" content="Marketing intelligence, contractor guides, case studies, and tools for design-build firms and high-end remodelers nationwide." />
+      </Head>
       <div className="wrap">
         <div className="section-head">
           <div className="eyebrow"><span>Resources</span></div>
-          <h2>Everything we know about growing a remodeling business</h2>
+          <h1>Everything we know about growing a remodeling business</h1>
         </div>
         <div className="services-grid">
           {SECTIONS.map((s) => (

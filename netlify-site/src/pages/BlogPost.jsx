@@ -1,19 +1,12 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useParams, Link } from 'react-router-dom';
+import { Head } from 'vite-react-ssg';
 import { ChevronLeft } from 'lucide-react';
-import { getBlogPostBySlug, applyMeta, renderMarkdown } from '../lib/content.js';
+import { getBlogPostBySlug, renderMarkdown } from '../lib/content.js';
 
 export default function BlogPost() {
   const { slug } = useParams();
   const post = getBlogPostBySlug(slug);
-
-  useEffect(() => {
-    if (post) {
-      const title = post.seo_title && post.seo_title.trim() ? post.seo_title : `${post.title} | Web Bull Marketing`;
-      const description = post.seo_description && post.seo_description.trim() ? post.seo_description : post.excerpt;
-      applyMeta(title, description);
-    }
-  }, [post]);
 
   if (!post) {
     return (
@@ -23,8 +16,15 @@ export default function BlogPost() {
     );
   }
 
+  const title = post.seo_title && post.seo_title.trim() ? post.seo_title : `${post.title} | Web Bull Marketing`;
+  const description = post.seo_description && post.seo_description.trim() ? post.seo_description : post.excerpt;
+
   return (
     <section style={{ paddingTop: 130 }}>
+      <Head>
+        <title>{title}</title>
+        {description && <meta name="description" content={description} />}
+      </Head>
       <div className="wrap" style={{ maxWidth: 760 }}>
         <Link to="/blog" className="back-link"><ChevronLeft size={15} /> Back to blog</Link>
         <div className="blog-date" style={{ marginTop: 24 }}>{post.date}</div>

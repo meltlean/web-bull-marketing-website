@@ -1,13 +1,15 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
+import { useOutletContext } from 'react-router-dom';
+import { Head } from 'vite-react-ssg';
 import { Calendar } from 'lucide-react';
 import content from '../../content/pages/home.json';
-import { applyMeta, renderMarkdown } from '../lib/content.js';
+import { renderMarkdown } from '../lib/content.js';
 import SliderField from '../components/SliderField.jsx';
 import LeadForm from '../components/LeadForm.jsx';
 
-export default function Home({ bookingLink }) {
+export default function Home() {
+  const { bookingLink } = useOutletContext();
   const p = content;
-  useEffect(() => { applyMeta(p.seo_title, p.seo_description); }, []);
 
   const [leads, setLeads] = useState(120);
   const [avgValue, setAvgValue] = useState(45000);
@@ -34,6 +36,10 @@ export default function Home({ bookingLink }) {
 
   return (
     <>
+      <Head>
+        <title>{p.seo_title}</title>
+        <meta name="description" content={p.seo_description} />
+      </Head>
       <header className="hero">
         <div className="wrap">
           <div className="badge"><span className="dot" /><span>{p.badge}</span></div>

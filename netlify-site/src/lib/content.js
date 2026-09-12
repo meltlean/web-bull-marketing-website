@@ -53,17 +53,6 @@ export function renderMarkdown(text) {
   return marked.parse(text);
 }
 
-export function applyMeta(seoTitle, seoDescription) {
-  if (seoTitle) document.title = seoTitle;
-  let tag = document.querySelector('meta[name="description"]');
-  if (!tag) {
-    tag = document.createElement('meta');
-    tag.setAttribute('name', 'description');
-    document.head.appendChild(tag);
-  }
-  if (seoDescription) tag.setAttribute('content', seoDescription);
-}
-
 export function applyGA(gaId) {
   document.querySelectorAll('[data-wbm-ga]').forEach((n) => n.remove());
   if (!gaId || !gaId.trim()) return;

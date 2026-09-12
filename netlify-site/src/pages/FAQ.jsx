@@ -1,19 +1,23 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
+import { Head } from 'vite-react-ssg';
 import { ChevronRight } from 'lucide-react';
 import content from '../../content/pages/faq.json';
-import { applyMeta, renderMarkdown } from '../lib/content.js';
+import { renderMarkdown } from '../lib/content.js';
 
 export default function FAQ() {
   const p = content;
-  useEffect(() => { applyMeta(p.seo_title, p.seo_description); }, []);
   const [openIdx, setOpenIdx] = useState(0);
 
   return (
     <section style={{ paddingTop: 130 }}>
+      <Head>
+        <title>{p.seo_title}</title>
+        <meta name="description" content={p.seo_description} />
+      </Head>
       <div className="wrap" style={{ maxWidth: 780 }}>
         <div className="section-head">
           <div className="eyebrow"><span>{p.eyebrow}</span></div>
-          <h2>{p.title}</h2>
+          <h1>{p.title}</h1>
           <p>{p.sub}</p>
         </div>
         <div className="faq-list">
